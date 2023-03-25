@@ -1,0 +1,37 @@
+name: Build and Push Docker Image to ECR
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: demo-app
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        
+      - name: Build and Tag Docker Image
+        id: build-image
+        run: |
+          docker build -t demo-app .
+      
+      - name: Tag Docker Image to ECR
+        id: tag-image
+        run: |
+          docker tag demo-app:latest public.ecr.aws/j7i2d7u6/demo-app:latest
+          
+      - name: Push Docker Image to ECR
+        id: push-image
+        run: |
+          docker push public.ecr.aws/j7i2d7u6/demo-app:latest
