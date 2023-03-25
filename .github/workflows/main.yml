@@ -48,3 +48,8 @@ jobs:
         id: push-image
         run: |
           docker push public.ecr.aws/j7i2d7u6/demo-app:latest
+      - name: Push Docker Image to ECR
+        id: terraform
+        run: |
+          terraform init
+      
