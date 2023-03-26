@@ -47,4 +47,8 @@ jobs:
         id: push-image
         run: |
           docker push 223150837745.dkr.ecr.us-east-1.amazonaws.com/demo-app:$(date +%Y-%m-%d-%H-%M-%S)
+      - name: terraform initialization 
+        run: cd terraform/ && terraform init 
+      - name: terraform deployment
+        run: cd terraform/ && terraform apply --auto-approve
       
