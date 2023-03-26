@@ -42,10 +42,10 @@ jobs:
       - name: Tag Docker Image to ECR
         id: tag-image
         run: |
-          docker tag demo-app:latest public.ecr.aws/j7i2d7u6/demo-app:latest
+          docker tag demo-app:latest public.ecr.aws/j7i2d7u6/demo-app:$(date +%Y-%m-%d-%H-%M-%S)
           
       - name: Push Docker Image to ECR
         id: push-image
         run: |
-          docker push public.ecr.aws/j7i2d7u6/demo-app:latest
+          docker push public.ecr.aws/j7i2d7u6/demo-app:$(date +%Y-%m-%d-%H-%M-%S)
       
