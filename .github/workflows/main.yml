@@ -41,10 +41,10 @@ jobs:
       - name: Tag Docker Image to ECR
         id: tag-image
         run: |
-          docker tag demo-app:latest 223150837745.dkr.ecr.us-east-1.amazonaws.com/demo-app:latest
+          docker tag demo-app:latest 223150837745.dkr.ecr.us-east-1.amazonaws.com/demo-app:$(date +%Y-%m-%d-%H-%M-%S)
           
       - name: Push Docker Image to ECR
         id: push-image
         run: |
-          docker push 223150837745.dkr.ecr.us-east-1.amazonaws.com/demo-app:latest
+          docker push 223150837745.dkr.ecr.us-east-1.amazonaws.com/demo-app:$(date +%Y-%m-%d-%H-%M-%S)
       
