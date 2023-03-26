@@ -1,7 +1,3 @@
-resource "aws_ecr_repository" "demo-app" {
-  name                 = "demo-app"
-  image_tag_mutability = "MUTABLE"
-}
 resource "aws_ecs_task_definition" "demo-app-task" {
   family                   = "demo-app"
   execution_role_arn       = aws_iam_role.ecs_task_execution.arn
@@ -13,7 +9,7 @@ resource "aws_ecs_task_definition" "demo-app-task" {
   container_definitions = jsonencode([
     {
       name  = "demo-app-container"
-      image = "${aws_ecr_repository.demo-app.repository_url}:latest"
+      image = "223150837745.dkr.ecr.us-east-1.amazonaws.com/demo-app:latest"
       portMappings = [
         {
           containerPort = var.container_port
