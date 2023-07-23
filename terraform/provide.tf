@@ -12,7 +12,7 @@ provider "aws" {
 }
 terraform {
   backend "s3" {
-    bucket = "demoapp-nodejs"
+    bucket = "test-app-ga"
     key    = "./terraform.tfstate"
     region = "us-east-1"
   }
